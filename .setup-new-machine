@@ -1,0 +1,45 @@
+update /etc/pacman.d/mirrorlist by adding manjaro.melbourneitmirror.net
+
+install guake
+adjust screen size
+
+disable PC speaker
+https://wiki.archlinux.org/index.php/PC_speaker
+
+Blacklisting the pcspkr module will prevent udev from loading it at boot:
+
+# sudo vi "blacklist pcspkr" > /etc/modprobe.d/nobeep.conf
+
+
+# remap Caps to Ctrl
+setxkbmap -option ctrl:nocaps
+
+# change keyboard delay & repeat rate
+xset r rate 220 110
+
+Settings Editor
+xfwm4 : titleless_maximize : enable
+
+# set partition on 2nd SDD as bootable
+sudo fdisk /dev/sdb
+m - help
+p - print
+a - mark as bootable
+1 - mark 1st partition
+p - print again (to confirm that * appeared)
+w - write changes
+
+# change default shell to Z shell, download oh-my-zsh, set it as default
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+chsh -s /usr/bin/zsh
+
+# install ranger + plugins
+sudo pacman -Syu ranger highlight mediainfo
+
+# install vim, smplayer, qpdfview
+sudo pacman -Syu vim smplayer qpdfview
+
+# install Fira Code ttf font
+pamac install ttf-fira-code
+
+
